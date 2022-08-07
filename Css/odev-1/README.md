@@ -1,3 +1,14 @@
 # CSS Odev-1
 
-![CSS odev-1](./screenshots/CSS-odev1.PNG?raw=true)
+# index sayfası
+
+![index sayfası](./screenshots/CSS-odev1-index.png?raw=true)
+
+# Ürünlerimiz sayfası
+
+![hakkımızda sayfası](./screenshots/CSS-odev1-urunler.png?raw=true)
+
+# Hakkımızda sayfası
+
+![ürünler sayfası](./screenshots/CSS-odev1-hakkimizda.png?raw=true)
+

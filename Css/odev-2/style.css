@@ -1,0 +1,36 @@
+body{
+      
+    text-align: center;   
+     
+}
+section.s1{
+    background-color:lightgrey;
+    
+}
+input{
+    width: 400px;
+}
+.s2{
+    display:inline-flex;
+   
+}
+.s2 div{    
+    margin:2px;
+    float: left;
+    text-align: center;
+}
+.div1{
+    width:550px;
+    background-color: #b1d0d1;
+}
+.div2{
+    width:450px ;
+    background-color: #7eb1b3;
+}
+.div3{
+    width:680px ;
+    background-color:cadetblue ;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

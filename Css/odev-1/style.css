@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+header h1 {
+    color: #cc4d48;
+}
+
+section h3 {
+    color: blueviolet;
+}
+
+section h4 {
+    color: goldenrod;
+}
+
+section ul li {
+    font-weight: 500;
+}
+
+img.center {
+    max-width:400px;
+    height: 400px;
+        
+          
+}
+
+span {
+    font-weight: bold;
+}

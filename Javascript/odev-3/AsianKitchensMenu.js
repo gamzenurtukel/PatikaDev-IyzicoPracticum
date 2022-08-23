@@ -71,79 +71,59 @@ const menu = [
     img: "https://www.justonecookbook.com/wp-content/uploads/2011/10/Dorayaki-New-500x400.jpg",
     desc: `Red bean paste dessert, serving with honey.`,
   },
-  {
-    id: 10,
-    title: "Kuru Fasulye",
-    category: "Turkey",
-    price: 5.99,
-    img: "https://pratikevyemekleritarifi.com/image/yemek-tarifleri/sebzeli-yemek-tarifleri/sulu-yemek-tarifleri/kuru-fasulye-5e789accca071.jpg",
-    desc: `Kuru fasulyemiz bol protein kaynakli besinlerimizden birisidir.`,
-  },
 ];
 
-// Pull category split from array
-const categories = menu.reduce(
-  (values, item) => {
-    if (!values.includes(item.category)) {
-      values.push(item.category);
-    }
-    return values;
-  },
-  ["All"]
-);
+//Pull Categories
+let categories = menu.map((x) => x.category);
+//Add All to categories
+categories.unshift("All");
 
-// Creating buttons
-for (let i = 0; i < categories.length; i++) {
-  const btnContainer = document.querySelector(".btn-container");
-  const newButton = document.createElement("button");
-  newButton.setAttribute("type", "button");
-  newButton.setAttribute("data", categories[i]);
-  newButton.addEventListener("click", buttonClick);
-  newButton.classList.add("btn", "btn-item", "btn-outline-dark");
-  newButton.innerHTML = categories[i];
-  btnContainer.append(newButton);
-}
+//filtering repeating categories item
+let categoriesFilter = (categories) =>
+  categories.filter((x, y) => categories.indexOf(x) === y);
+let newCategories = categoriesFilter(categories);
 
-// Activating the buttons
+//show category buttons
+newCategories.forEach((element) => {
+  let btnContainer = document.querySelector(".btn-container");
+  let button = document.createElement("button");
+  button.setAttribute("id", element);
+  button.addEventListener("click", buttonClick);
+  button.classList.add("btn", "btn-outline-dark", "btn-item");
+  button.innerHTML = element;
+  btnContainer.append(button);
+});
+
+//Listing of category buttons
 function buttonClick() {
-  let filter = menu.filter(
-    (item) => item.category == this.getAttribute("data")
-  );
-  this.getAttribute("data") == "All" ? (filter = menu) : "";
-  let result = filter
-    .map((itemResult) => {
-      return `<div class="menu-items col-lg-6 col-sm-12">
-        <img src="${itemResult.img}" alt="" class = "photo"> 
-        <div class="menu-info">
-        <div class="menu-title">
-          <h4>${itemResult.title}</h4>
-          <h4 class = "price">${itemResult.price}</h4>
-        </div>
-        <div class = "menu-text">${itemResult.desc}</div>
-        </div>
-      </div>
-      `;
-    })
-    .join("");
-  const sectionCenter = document.querySelector(".section-center");
-  sectionCenter.innerHTML = result;
+  const list =
+    this.getAttribute("id") == "All"
+      ? menu
+      : menu.filter((item) => {
+          return item.category == this.getAttribute("id");
+        });
+  menuList(list);
 }
 
-// Show all when page opens
-let result = menu
-  .map((itemResult) => {
-    return `<div class="menu-items col-lg-6 col-sm-12">
-      <img src="${itemResult.img}" alt="" class = "photo">
-      <div class="menu-info">
+//Show menu lists
+const menuContainer = document.querySelector(".section-center", ".row");
+let menuList = (menuMap) => {
+  menuContainer.innerHTML = "";
+  menuMap.map((item) => {
+    let menuItem = document.createElement("div");
+    menuItem.classList.add("menu-items", "col-lg-6", "col-sm-12");
+    menuItem.innerHTML = `<img src="${item.img}" alt="${item.title}" class="photo">
+    <div class="menu-info">
       <div class="menu-title">
-        <h4>${itemResult.title}</h4>
-        <h4 class = "price">${itemResult.price}</h4>
+        <h4>${item.title}</h4>
+        <h4 class="price">${item.price}</h4>
       </div>
-      <div class = "menu-text">${itemResult.desc}</div>
+      <div class="menu-text">
+      ${item.desc}
       </div>
-    </div>
-    `;
-  })
-  .join("");
-const sectionCenter = document.querySelector(".section-center");
-sectionCenter.innerHTML = result;
+    </div>`;
+    menuContainer.append(menuItem);
+  });
+};
+
+menuList(menu);
